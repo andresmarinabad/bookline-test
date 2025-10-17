@@ -39,7 +39,7 @@ jobs:
           pip install uv
           uv pip compile pyproject.toml --output-file requirements.txt
           uv pip install --system -r requirements.txt
-          uv pip install --system pytest
+          uv pip install --system pytest httpx
 
       - name: Wait for Postgres
         run: |
