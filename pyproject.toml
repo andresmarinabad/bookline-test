@@ -1,6 +1,6 @@
 [project]
 name = "car-rental-api"
-version = "0.3.0"
+version = "0.3.1"
 description = "REST API for car rental"
 requires-python = ">=3.10"
 
@@ -19,7 +19,7 @@ virtualenv = true
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.3.0"
+version = "0.3.1"
 tag_format = "v$version"
 version_files = ["pyproject.toml"]
 

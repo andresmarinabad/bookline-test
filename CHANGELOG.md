@@ -1,3 +1,9 @@
+## v0.3.1 (2025-10-17)
+
+### Fix
+
+- **cicd**: fetch tags to build image
+
 ## v0.3.0 (2025-10-17)
 
 ### Feat
