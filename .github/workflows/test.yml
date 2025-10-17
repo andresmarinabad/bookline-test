@@ -37,8 +37,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install uv
-          uv pip install -r <(uv pip compile pyproject.toml --output-format=requirements.txt)
-          uv pip install pytest
+          uv pip compile pyproject.toml --output-file requirements.txt
+          uv pip install --system -r requirements.txt
+          uv pip install --system pytest
 
       - name: Wait for Postgres
         run: |
