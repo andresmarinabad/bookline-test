@@ -1,0 +1,57 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: carrental_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install uv
+          uv pip install -r <(uv pip compile pyproject.toml --output-format=requirements.txt)
+          uv pip install pytest
+
+      - name: Wait for Postgres
+        run: |
+          echo "Waiting for Postgres..."
+          for i in {1..10}; do
+            pg_isready -h localhost -U postgres && break
+            sleep 2
+          done
+
+      - name: Run tests
+        env:
+          TEST_ENV: ci
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/carrental_test
+          PYTHONPATH: .
+        run: |
+          pytest -v --disable-warnings
