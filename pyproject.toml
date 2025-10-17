@@ -1,0 +1,25 @@
+[project]
+name = "car-rental-api"
+version = "0.1.0"
+description = "REST API for car rental"
+requires-python = ">=3.10"
+
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "sqlalchemy",
+    "psycopg2-binary",
+    "pydantic",
+    "alembic",
+    "pytest"
+]
+
+[tool.uv]
+virtualenv = true
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.1.0"
+tag_format = "v$version"
+version_files = ["pyproject.toml"]
+
