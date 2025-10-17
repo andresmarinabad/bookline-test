@@ -27,6 +27,11 @@ jobs:
       - name: Install Commitizen
         run: pip install commitizen
 
+      - name: Configure Git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Bump version and changelog
         id: bump
         run: |
@@ -36,8 +41,6 @@ jobs:
 
       - name: Push version bump commit and tag
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           git push origin main --follow-tags
 
       - name: Create GitHub Release
