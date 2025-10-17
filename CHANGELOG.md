@@ -1,3 +1,9 @@
+## v0.3.0 (2025-10-17)
+
+### Feat
+
+- **cicd**: concat build and push at release
+
 ## v0.2.1 (2025-10-17)
 
 ### Fix
