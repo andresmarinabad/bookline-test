@@ -1,4 +1,5 @@
 # Car Rental API
+[![Run Tests](https://github.com/andresmarinabad/bookline-test/actions/workflows/test.yml/badge.svg)](https://github.com/andresmarinabad/bookline-test/actions/workflows/test.yml)
 
 ## Description
 
