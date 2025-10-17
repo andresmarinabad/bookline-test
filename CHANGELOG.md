@@ -1,3 +1,9 @@
+## v0.4.0 (2025-10-17)
+
+### Feat
+
+- use real image on compose tag images with release semver
+
 ## v0.3.1 (2025-10-17)
 
 ### Fix
