@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   db:
     image: postgres:16
@@ -12,7 +10,7 @@ services:
       - "5432:5432"
 
   api:
-    build: .
+    image: ghcr.io/andresmarinabad/bookline-test:latest
     container_name: car_rental_api
     depends_on:
       - db

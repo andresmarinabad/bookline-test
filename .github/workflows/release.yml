@@ -85,12 +85,16 @@ jobs:
 
       - name: Build Docker image
         run: |
+          TAG=v${{ needs.release.outputs.version }}
           IMAGE_NAME=ghcr.io/${{ github.repository }}
-          docker build -t $IMAGE_NAME:${{ steps.vars.outputs.version }} .
-          docker tag $IMAGE_NAME:${{ steps.vars.outputs.version }} $IMAGE_NAME:latest
+          echo "Building image for tag: $TAG"
+          docker build -t $IMAGE_NAME:$TAG .
+          docker tag $IMAGE_NAME:$TAG $IMAGE_NAME:latest
 
       - name: Push Docker image
         run: |
+          TAG=v${{ needs.release.outputs.version }}
           IMAGE_NAME=ghcr.io/${{ github.repository }}
-          docker push $IMAGE_NAME:${{ steps.vars.outputs.version }}
+          echo "Pushing image $IMAGE_NAME:$TAG"
+          docker push $IMAGE_NAME:$TAG
           docker push $IMAGE_NAME:latest
